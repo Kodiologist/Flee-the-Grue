@@ -1,0 +1,60 @@
+To win, you must kill the wumpus and then reach the exit. You lose if you run out of arrows before killing the wumpus, or if you end up in the same room as the wumpus or the grue. If you reach the exit after you've killed the wumpus, you win even if the grue occupies the room.
+
+The map is a 10-by-10 hexagonal tiling, with each room being a vertex. It doesn't wrap around.
+
+There are only four things on the map: the player, the wumpus, the grue, and the exit. When the game begins, each of these is placed randomly on the map such that none is within three moves of another.
+
+The order of movement is: player, wumpus, grue. (This may not actually matter.)
+
+At the beginning of each turn, you are warned which of the other things is within three moves. At the beginning of the game, you pick a "keen sense": smell, hearing, or sight. These allow you to tell exactly how many moves away one of the objects is, so long as it's within three moves. The correspondence is:
+smell - wumpus
+hearing - grue
+sight - exit
+
+You have three arrows to start with. There isn't any way to collect more arrows in-game. It takes one turn to shoot one arrow; you choose the direction. You are prevented in a direction in which you can't move. If the arrow doesn't hit anything in the first room it reaches, it splits into two and goes into the two adjacent rooms that you aren't in (if they exist). If those don't hit anything, your shot is lost. If your arrow hits the wumpus or the grue, you'll get a message indicating what it hit, though not where the monster was. Arrows ignore the exit. Shooting always causes the wumpus to wake up, regardless of where it is.
+
+The wumpus's behavior is much as it was in Hunt the Wumpus. Usually, it is comatose. When you fire an arrow, it has a 75% chance of moving to a random adjacent room; otherwise, it doesn't do anything. If you enter its room, or it enters your room, you die. If an arrow hits it, it dies.
+
+The grue is much more active. Each turn, under normal circumstances, it moves to a random adjacent room, other than the one it was in just last turn. If it's within three moves of you, however, it moves so as to get as close to you as possible: if there is no single best choice, it picks randomly between the best. If you enter its room, or it enters your room, you die. If an arrow hits it, it's stunned, causing it to miss its next three turns. (The messages you get warning of the grue's presence are different while the grue is stunned.) When it recovers from the stun, its "place I last came from" variable is randomly reset. If an arrow hits it while it's stunned, its time to recover is incremented by three.
+
+The wumpus and the grue ignore each other, and move through each other at will.
+
+--------------------------------------------------
+
+Points nearby (x, y):
+  x and y are of the same parity:
+    (x, y-1), (x, y+1), (x+1, y)
+  x and y are of opposite parities:
+    (x, y-1), (x, y+1), (x-1, y)
+
+--------------------------------------------------
+
+A: 3  (nn,nn)
+W: A      \
+           \
+          (nn,nn)--(nn,nn)
+           /
+          /
+      (nn,nn)
+
+I smell a wumpus!
+  (It's 2 moves away.)
+I see a shaft of sunlight.
+--------------------------------------------------
+
+A: n  (nn,nn)
+W: B      \
+           \
+          (nn,nn)--(nn,nn)
+           /
+          /
+      (nn,nn)
+
+
+A: n          (nn,nn)
+W: B            /
+               /
+ (nn,nn)--(nn,nn)
+               \
+                \
+              (nn,nn)
