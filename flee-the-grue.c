@@ -41,7 +41,7 @@ void setup(void)
  {wumpus_alive = true;
   grue_stun = 0;
   arrows = STARTING_ARROWS;
-  
+
   // We'll make a hash of rooms from which to select starting
   // positions for the various objects. The rooms are stored
   // as keys; we'll ignore the values.
@@ -286,7 +286,7 @@ the function returns false. */
           else
              {a->x = x + 1;
               set_a = true;}}}
-  else  
+  else
      {if (x != 0 && ex != x - 1)
          {if (set_a)
              {b->x = x - 1;
@@ -377,7 +377,7 @@ status. */
 
   //printf("[(%2u,%2u) : (%2u,%2u) : (%2u,%2u)]\n\n",
   //    wumpus.x, wumpus.y, grue.x, grue.y, the_exit.x, the_exit.y);
-  
+
   /* Warn if the monsters or the exit is nearby. The order in
   which the warnings are given may give the player free hints,
   but shuffling them would be too much of a pain in the neck to
