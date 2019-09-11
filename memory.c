@@ -14,7 +14,7 @@ void * kmalloc(size_t s)
  {++kodi_memory_malloced;
   void *p = malloc(s);
   if (p == NULL)
-     {printf("I failed to allocate %u bytes of memory.\n", s);
+     {printf("I failed to allocate %lu bytes of memory.\n", s);
       exit(1);}
   return p;}
 
